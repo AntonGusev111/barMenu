@@ -103,7 +103,7 @@ body {
 .menuListContent {
     justify-content: center;
     width: 100%;
-    min-height: 120vh;
+    min-height: 110vh;
     align-items: center;
     display: flex;
     flex-direction: column;
