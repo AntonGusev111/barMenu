@@ -2,6 +2,7 @@ import checkInputCoord from "./check";
 
 class Menu {
   constructor() {
+    this.loader = document.querySelector(".loaderWraper");
     this.coctailCard = document.querySelector(".img");
     this.selectCocktail = "";
     this.modal = document.querySelector(".menuBtn");
@@ -175,14 +176,14 @@ class Menu {
   createMenuList() {
     for (let item in this.images) {
       if (this.images[item][1]) {
-        this.createPost(this.AlcoList, item);
+        this.createList(this.AlcoList, item);
       } else {
-        this.createPost(this.NotAlcoList, item);
+        this.createList(this.NotAlcoList, item);
       }
     }
   }
 
-  createPost(position, value) {
+  createList(position, value) {
     let listString = document.createElement("div");
     listString.classList.add("CocktailName");
     listString.innerHTML = value;
@@ -192,20 +193,32 @@ class Menu {
   selectCocktailCard() {
     this.coctailCard.classList.remove("appearance");
     this.coctailCard.classList.add("attenuation");
-    this.coctailCard.src = this.images[this.selectCocktail][0];
-    this.coctailCard.style.marginLeft = "2vh";
     setTimeout(() => {
+      this.loader.classList.remove("nonexistent");
+    }, 1500);
+    this.openAndCloseMenu(this.MenuModal);
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+    const img = new Image();
+    img.src = this.images[this.selectCocktail][0];
+    img.onload = () => this.changeCard(img.src);
+    this.loader.classList.add("nonexistent");
+  }
+
+  changeCard(newSrc) {
+    this.coctailCard.src = newSrc;
+    console.log(this.loader.classList);
+    setTimeout(() => {
+      this.loader.classList.add("nonexistent");
       this.coctailCard.classList.remove("attenuation");
       this.coctailCard.classList.add("appearance");
-      this.openAndCloseMenu(this.MenuModal);
     }, 1000);
     setTimeout(() => {
-      window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: "smooth",
-      });
-    }, 1500);
+      this.loader.classList.add("nonexistent");
+    }, 2000);
   }
 
   openAndCloseMenu(button) {
