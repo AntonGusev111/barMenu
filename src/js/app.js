@@ -195,7 +195,7 @@ class Menu {
     this.coctailCard.classList.add("attenuation");
     setTimeout(() => {
       this.loader.classList.remove("nonexistent");
-    }, 1500);
+    }, 500);
     this.openAndCloseMenu(this.MenuModal);
     window.scrollTo({
       top: 0,
@@ -204,21 +204,21 @@ class Menu {
     });
     const img = new Image();
     img.src = this.images[this.selectCocktail][0];
+    this.coctailCard.src = this.images[this.selectCocktail][0];
     img.onload = () => this.changeCard(img.src);
-    this.loader.classList.add("nonexistent");
   }
 
   changeCard(newSrc) {
     this.coctailCard.src = newSrc;
-    console.log(this.loader.classList);
     setTimeout(() => {
-      this.loader.classList.add("nonexistent");
       this.coctailCard.classList.remove("attenuation");
       this.coctailCard.classList.add("appearance");
-    }, 1000);
-    setTimeout(() => {
       this.loader.classList.add("nonexistent");
-    }, 2000);
+      setTimeout(() => {
+        this.loader.classList.add("nonexistent");
+      }, 1500);
+    }, 10);
+    
   }
 
   openAndCloseMenu(button) {
