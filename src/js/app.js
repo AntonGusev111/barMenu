@@ -131,6 +131,10 @@ class Menu {
         "https://github.com/AntonGusev111/menucards/blob/master/Cockt-30.png?raw=true",
         false,
       ],
+      "Рыжая Собака": [
+        "https://github.com/AntonGusev111/menucards/blob/master/Cockt-31.png?raw=true",
+        true,
+      ],
     };
   }
 
@@ -218,7 +222,6 @@ class Menu {
         this.loader.classList.add("nonexistent");
       }, 1500);
     }, 10);
-    
   }
 
   openAndCloseMenu(button) {
